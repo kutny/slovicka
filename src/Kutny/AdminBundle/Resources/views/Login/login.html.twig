@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slovicka</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" media="screen">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="{{ asset('/js/bootstrap.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('bundles/kutnyadmin/css/login.css') }}" />
+</head>
+<body>
+<div class="container">
+	<form action="{{ path('route.login_check') }}" method="post" class="form-signin">
+		<h2 class="form-signin-heading">Slovicka</h2>
+		{% if error %}
+			<div class="alert alert-danger">{{ error.message }}</div>
+		{% endif %}
+		<input type="text" class="input-block-level" placeholder="Email address" name="_username" value="{{ last_username }}">
+		<input type="password" class="input-block-level" placeholder="Password" name="_password">
+		<label class="checkbox">
+			<input type="checkbox" value="_remember_me"> Remember me
+		</label>
+		<button class="btn btn-large btn-primary" type="submit">Sign in</button>
+	</form>
+</div>
+</body>
+</html>
+

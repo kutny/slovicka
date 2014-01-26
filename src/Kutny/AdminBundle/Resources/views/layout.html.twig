@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="slovicka">
+<head>
+	<title>{% block title %}{% endblock %} | Slovicka</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    {#<script src="https://code.jquery.com/jquery.js"></script>#}
+    {#<script src="{{ asset('/js/bootstrap.js') }}"></script>#}
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+	<script src="{{ asset('bundles/kutnyadmin/js/angular-config.js') }}"></script>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css" />
+    {#<link href="{{ asset('/css/bootstrap.css') }}" type="text/css" rel="stylesheet" media="screen" />#}
+    {% stylesheets filter='css_url_rewrite'
+    '@KutnyAdminBundle/Resources/public/css/admin.css'
+    %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+    <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+	{% block headAssets %}{% endblock %}
+	{#<script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>#}
+	{#<script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>#}
+</head>
+<body>
+<div class="container">
+
+    <div class="masthead">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="text-muted">Slovíčka</h3>
+            </div>
+            <div class="col-md-4 text-right current-user-info">
+                <strong>{{ app.user.username }}</strong> | <a href="{{ path('route.logout') }}">Logout</a>
+            </div>
+        </div>
+        {{ knp_menu_render('main') }}
+    </div>
+
+	{% block content %}{% endblock %}
+
+	<footer class="footer">
+		<p>Powered by <a href="http://www.slovicka.cz/">Slovicka</a> platform</p>
+	</footer>
+</div>
+</body>
+</html>

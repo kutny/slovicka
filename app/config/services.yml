@@ -1,0 +1,278 @@
+services:
+
+  appdata_manager:
+    class: Kutny\FixturesBundle\AppDataManager
+    arguments:
+      -
+        - @mail.queue.item_state.mail_queue_item_state_fixtures_applier
+      -
+        - @user.user_sample_data_applier
+
+  application.output.std_err:
+    class: KutnyLib\Application\Output\StdErr
+
+  application.output.std_out:
+    class: KutnyLib\Application\Output\StdOut
+
+  controller.action.door_keeper_interceptor:
+    class: KutnyLib\Controller\Action\DoorkeeperInterceptor
+    scope: request
+    arguments:
+      - @service_container
+      - @annotations.reader
+      - @request
+
+  controller.action.door_keeper_pointcut:
+    class: KutnyLib\Controller\Action\DoorkeeperPointcut
+    arguments:
+      - @annotations.reader
+    tags:
+      - {name: jms_aop.pointcut, interceptor: controller.action.door_keeper_interceptor}
+
+  css.inline_styles_converter:
+    class: KutnyLib\Css\InlineStylesConverter
+
+  dashboard.dashboard_controller:
+    class: Kutny\Dashboard\DashboardController
+
+  date_time.date_time_factory:
+    class: KutnyLib\DateTime\DateTimeFactory
+
+  debug.tracy_exception_logger:
+    class: KutnyLib\Debug\TracyExceptionLogger
+
+  doctrine.dbal.default.wrapped_connection:
+    factory_service: doctrine.dbal.default_connection
+    factory_method: getWrappedConnection
+    class: PDO
+
+  mail.defaultFrom:
+    class: KutnyLib\Email\EmailAddress
+    arguments:
+      - %mailer.default.fromEmail%
+      - %mailer.default.fromName%
+
+  mail.mailer.queue_mailer:
+    class: Kutny\Mail\Mailer\QueueMailer
+    arguments:
+      - @mail.defaultFrom
+
+  mail.message.html_message_layout_filler:
+    class: Kutny\Mail\Message\HtmlMessageLayoutFiller
+
+  mail.queue.attachment.mail_attachment_repository:
+    class: Kutny\Mail\Queue\Attachment\MailAttachmentRepository
+    arguments:
+      - @doctrine.orm.default_entity_manager
+
+  mail.queue.item_state.mail_queue_item_state_fixtures_applier:
+    class: Kutny\Mail\Queue\ItemState\MailQueueItemStateFixturesApplier
+
+  mail.queue.item_state.mail_queue_item_state_repository:
+    class: Kutny\Mail\Queue\ItemState\MailQueueItemStateRepository
+    arguments:
+      - @doctrine.orm.default_entity_manager
+
+  mail.queue.mail_queue_daemon.runnable:
+    class: Kutny\Mail\Queue\MailQueueDaemon
+
+  mail.queue.mail_queue_daemon:
+    class: KutnyLib\Daemon\DoctrineDaemon
+    arguments:
+      - @doctrine.orm.default_entity_manager
+      - @mail.queue.mail_queue_daemon.runnable
+      - @application.output.std_out
+
+  mail.queue.mail_queue_facade:
+    class: Kutny\Mail\Queue\MailQueueFacade
+
+  mail.queue.mail_queue_repository:
+    class: Kutny\Mail\Queue\MailQueueRepository
+    arguments:
+      - @doctrine.orm.default_entity_manager
+
+  mail.queue.mail_sender.smtp_mail_sender:
+    class: Kutny\Mail\Queue\MailSender\SmtpMailSender
+    arguments:
+      - @mailer
+
+  mail.queue.mail_sender:
+    class: Kutny\Mail\Queue\MailSender
+    arguments:
+      - %mailer.max_retry_count%
+
+  mail.template.mail_message_2_mail_queue_item_converter:
+    class: Kutny\Mail\Template\MailMessage2MailQueueItemConverter
+
+  mail.template.mail_renderer:
+    class: Kutny\Mail\Template\MailRenderer
+    arguments:
+      - @twig.string_renderer
+
+  mail.template.template_factory:
+    class: Kutny\Mail\Template\TemplateFactory
+
+  menu.main:
+    class: Knp\Menu\MenuItem
+    factory_service: menu_builder
+    factory_method: createMainMenu
+    scope: request
+    tags:
+      - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
+
+  menu_builder:
+    class: Kutny\Menu\MainMenuBuilder
+    arguments: [@knp_menu.factory]
+
+  model.filter_applier:
+    class: KutnyLib\Model\FilterApplier
+
+  model.filtered_query_builder_factory:
+    class: KutnyLib\Model\FilteredQueryBuilderFactory
+    arguments:
+      - @doctrine.orm.default_entity_manager
+
+  model.general_filter_converter:
+    class: KutnyLib\Model\GeneralFilterConverter
+
+  model.query_builder_filter_applier:
+    class: KutnyLib\Model\QueryBuilderFilterApplier
+
+  php.garbage_collector:
+    class: KutnyLib\Php\GarbageCollector
+
+  phpunit.code_generator.class_body_generator:
+    class: KutnyLib\PhpUnit\CodeGenerator\ClassBodyGenerator
+
+  phpunit.code_generator.class_data_attributes_generator:
+    class: KutnyLib\PhpUnit\CodeGenerator\ClassDataAttributesGenerator
+
+  phpunit.code_generator.class_definition_generator:
+    class: KutnyLib\PhpUnit\CodeGenerator\ClassDefinitionGenerator
+
+  phpunit.code_generator.class_name_to_variable_name_convertor:
+    class: KutnyLib\PhpUnit\CodeGenerator\ClassNameToVariableNameConvertor
+
+  phpunit.code_generator.expectations_generator:
+    class: KutnyLib\PhpUnit\CodeGenerator\ExpectationsGenerator
+
+  phpunit.code_generator.mock_building_methods_generator:
+    class: KutnyLib\PhpUnit\CodeGenerator\MockBuildingMethodsGenerator
+
+  phpunit.code_generator.set_up_generator:
+    class: KutnyLib\PhpUnit\CodeGenerator\SetUpGenerator
+
+  phpunit.code_generator.tested_methods_generator:
+    class: KutnyLib\PhpUnit\CodeGenerator\TestedMethodsGenerator
+
+  phpunit.method_parser:
+    class: KutnyLib\PhpUnit\MethodParser
+
+  phpunit.test_skeleton_generator:
+    class: KutnyLib\PhpUnit\TestSkeletonGenerator
+
+  reflection.method_code_exporter:
+    class: KutnyLib\Reflection\MethodCodeExporter
+
+  security.request_matcher:
+    class: Symfony\Component\HttpFoundation\RequestMatcher
+    arguments: ['/', %security_hostname_matcher%]
+
+  service.service_configuration_creator:
+    class: KutnyLib\ServiceManager\ServiceConfigurationCreator
+    arguments: [%service_container%]
+
+  session.handler.pdo:
+    class: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+    arguments:
+      - @doctrine.dbal.default.wrapped_connection
+      - %pdo.db_options%
+
+  settings.settings_controller:
+    class: Kutny\Settings\SettingsController
+
+  sleeper.integer_sleeper:
+    class: KutnyLib\Sleeper\IntegerSleeper
+
+  sql_file_importer:
+    class: KutnyLib\Db\SqlFileImporter
+    arguments: [%database_host%, %database_name%, %database_user%, %database_password%, %database_port%, %mysql_binaries_path%]
+
+  string.camel_2_underscore_converter:
+    class: KutnyLib\String\Camel2UnderscoreConverter
+
+  string.whitespaces_remover:
+    class: KutnyLib\String\WhitespacesRemover
+
+  templating.layout_filler:
+    class: Kutny\Templating\LayoutFiller
+
+  templating.layout_filler_interceptor:
+    class: KutnyLib\Templating\LayoutFillerInterceptor
+    arguments:
+      - @service_container
+      - @annotations.reader
+
+  templating.layout_filler_pointcut:
+    class: KutnyLib\Templating\LayoutFillerPointcut
+    arguments:
+      - @annotations.reader
+    tags:
+      - {name: jms_aop.pointcut, interceptor: templating.layout_filler_interceptor}
+
+  templating.layout_variable_setter:
+    class: KutnyLib\Templating\LayoutVariableSetter
+
+  templating.template_renderer.front:
+    class: KutnyLib\Templating\TemplateRenderer
+    arguments:
+      - @templating.layout_filler
+
+  twig.string_loader:
+    class: Twig_Loader_String
+
+  twig.string_renderer:
+    class: Twig_Environment
+    arguments: [@twig.string_loader, %twig.options%]
+
+  user.current_user_getter:
+    class: Kutny\User\CurrentUserGetter
+
+  user.email_unique_constraint:
+    class: Kutny\User\EmailUniqueConstraint
+
+  user.email_unique_validator:
+    class: Kutny\User\EmailUniqueValidator
+    tags:
+      - {name: validator.constraint_validator, alias: user_email_unique_validator}
+
+  user.login.login_controller:
+    class: Kutny\User\Login\LoginController
+
+  user.registration.registration_controller:
+    class: Kutny\User\Registration\RegistrationController
+
+  user.registration.registration_facade:
+    class: Kutny\User\Registration\RegistrationFacade
+    arguments:
+      - %bcrypt_iterations%
+
+  user.registration.registration_form:
+    class: Kutny\User\Registration\RegistrationForm
+
+  user.registration.welcome_email_creator:
+    class: Kutny\User\Registration\WelcomeEmailCreator
+
+  user.user_repository:
+    class: Kutny\User\UserRepository
+    arguments:
+        - @doctrine.orm.default_entity_manager
+
+  user.user_sample_data_applier:
+    class: Kutny\User\UserSampleDataApplier
+
+  vocabulary.overview_controller:
+    class: Kutny\Vocabulary\OverviewController
+
+  yml.yml_sorter:
+    class: KutnyLib\Yml\YmlSorter

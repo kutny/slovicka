@@ -1,0 +1,12 @@
+route.logout:
+    pattern:   /logout
+
+route.logout:
+    pattern:   /logout
+
+route.login_check:
+    pattern:   /login/check
+
+controller_routing_loader:
+    resource: .
+    type: kutny_no_bundle_controllers

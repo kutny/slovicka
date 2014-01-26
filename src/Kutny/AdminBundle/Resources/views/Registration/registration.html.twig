@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slovicka</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" media="screen">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="{{ asset('/js/bootstrap.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('bundles/kutnyadmin/css/registration.css') }}" />
+</head>
+<body>
+<div class="container">
+	<h2>Registration</h2>
+	{{ form(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
+</div>
+</body>
+</html>

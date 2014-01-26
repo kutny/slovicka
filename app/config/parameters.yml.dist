@@ -1,0 +1,41 @@
+parameters:
+    hostname: 'slovicka.my'
+    security_hostname_matcher: '^((www|api)\.)?slovicka\.my$'
+
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     slovicka
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+    bcrypt_iterations: 13
+
+    pdo.db_options:
+        db_table:    session
+        db_id_col:   id
+        db_data_col: value
+        db_time_col: time
+
+    service_container: %kernel.root_dir%/config/services.yml
+
+    coffee.path:
+    nodejs.path:
+
+    mysql_binaries_path:
+
+    mailer.default.fromEmail: info@slovicka.com
+    mailer.default.fromName: Slovicka
+    mailer.smtp.encryption: ssl
+    mailer.smtp.auth_mode: login
+    mailer.smtp.host:
+    mailer.smtp.username:
+    mailer.smtp.password:
+    mailer.max_retry_count: 3
