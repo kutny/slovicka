@@ -23,6 +23,9 @@
 	{% block headAssets %}{% endblock %}
 	{#<script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>#}
 	{#<script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>#}
+	<script type="text/javascript">
+		var apiBaseUrl = 'http://{{ apiHostname }}';
+	</script>
 </head>
 <body>
 <div class="container">

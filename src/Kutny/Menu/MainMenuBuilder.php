@@ -19,8 +19,8 @@ class MainMenuBuilder {
 		$menu->setChildrenAttribute('class', 'nav nav-justified');
 
 		$menu->addChild('Dashboard', ['route' => 'route.dashboard']);
+		$menu->addChild('Translator', ['route' => 'route.translator']);
 		$menu->addChild('Vocabulary', ['route' => 'route.vocabulary']);
-		$menu->addChild('Settings', ['route' => 'route.settings']);
 
 		return $menu;
 	}

@@ -1,5 +1,6 @@
 parameters:
     hostname: 'slovicka.my'
+    hostname_api: 'api.slovicka.my'
     security_hostname_matcher: '^((www|api)\.)?slovicka\.my$'
 
     database_driver:   pdo_mysql

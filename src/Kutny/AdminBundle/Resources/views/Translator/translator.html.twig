@@ -1,0 +1,50 @@
+{% extends "KutnyAdminBundle::layout.html.twig" %}
+
+{% block headAssets %}
+	<script type="text/javascript" src="{{ asset('bundles/kutnyadmin/js/TranslatorController.js') }}"></script>
+{% endblock %}
+
+{% block title %}Translator{% endblock %}
+{% block content %}
+<div class="jumbotron" ng-controller="TranslatorController">
+	<div class="row">
+		<div class="col-lg-6">
+			<form ng-submit="findVocabulary()">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Enter vocabulary" ng-model="vocabulary" ng-disabled="sendingRequest" autofocus required />
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="submit" ng-disabled="!vocabulary || sendingRequest">Go!</button>
+				</span>
+			</div>
+			</form>
+		</div>
+	</div>
+	<div class="row" ng-show="translations && !translations.length">
+		<p>No translation found</p>
+	</div>
+	<div class="row" ng-show="translations">
+		<ul class="unstyled">
+			<li ng-repeat="translation in translations"><a ng-click="prefillTranslation()"><small>[[ translation ]]</small></a></li>
+		</ul>
+	</div>
+	<div class="row" ng-show="translations">
+		<div class="col-lg-6">
+			<form ng-submit="saveVocabulary()" id="saveVocabulary">
+				<blockquote>
+					<small>[[ explanation ]]</small>
+				</blockquote>
+				<div class="form-group">
+					<input ng-model="userTranslation" class="form-control" placeholder="Your preferred translation" ng-disabled="sendingRequest" required />
+				</div>
+				<div class="form-group">
+					<textarea ng-model="note" class="form-control" rows="6" placeholder="Your English note" ng-disabled="sendingRequest"></textarea>
+				</div>
+				<div>
+					<input type="hidden" ng-model="userVocabularyId" />
+					<button class="btn btn-success" type="submit" ng-disabled="sendingRequest">Save vocabulary</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -7,6 +7,7 @@ services:
         - @mail.queue.item_state.mail_queue_item_state_fixtures_applier
       -
         - @user.user_sample_data_applier
+        - @vocabulary.sample_vocabulary_applier
 
   application.output.std_err:
     class: KutnyLib\Application\Output\StdErr
@@ -31,6 +32,15 @@ services:
 
   css.inline_styles_converter:
     class: KutnyLib\Css\InlineStylesConverter
+
+  curl.curl_downloader.body_decoder:
+    class: KutnyLib\Curl\CurlDownloader\BodyDecoder
+
+  curl.curl_downloader.response_parser:
+    class: KutnyLib\Curl\CurlDownloader\ResponseParser
+
+  curl.curl_downloader:
+    class: KutnyLib\Curl\CurlDownloader
 
   dashboard.dashboard_controller:
     class: Kutny\Dashboard\DashboardController
@@ -201,11 +211,16 @@ services:
   string.camel_2_underscore_converter:
     class: KutnyLib\String\Camel2UnderscoreConverter
 
+  string.duplicate_whitespaces_remover:
+    class: KutnyLib\String\DuplicateWhitespacesRemover
+
   string.whitespaces_remover:
     class: KutnyLib\String\WhitespacesRemover
 
   templating.layout_filler:
     class: Kutny\Templating\LayoutFiller
+    arguments:
+      - %hostname_api%
 
   templating.layout_filler_interceptor:
     class: KutnyLib\Templating\LayoutFillerInterceptor
@@ -227,6 +242,23 @@ services:
     class: KutnyLib\Templating\TemplateRenderer
     arguments:
       - @templating.layout_filler
+
+  translator.api.translator_controller:
+    class: Kutny\Translator\Api\TranslatorController
+
+  translator.api.translator_facade:
+    class: Kutny\Translator\Api\TranslatorFacade
+
+  translator.seznam.response_parser:
+    class: KutnyLib\Translator\Seznam\ResponseParser
+
+  translator.seznam.slovnik_api_translator:
+    class: KutnyLib\Translator\Seznam\SlovnikApiTranslator
+    arguments:
+      - @xml_rpc.client.seznam_slovnik_api
+
+  translator.translator_controller:
+    class: Kutny\Translator\TranslatorController
 
   twig.string_loader:
     class: Twig_Loader_String
@@ -266,13 +298,46 @@ services:
   user.user_repository:
     class: Kutny\User\UserRepository
     arguments:
-        - @doctrine.orm.default_entity_manager
+      - @doctrine.orm.default_entity_manager
 
   user.user_sample_data_applier:
     class: Kutny\User\UserSampleDataApplier
 
+  vocabulary.normalizer:
+    class: Kutny\Vocabulary\Normalizer
+
   vocabulary.overview_controller:
     class: Kutny\Vocabulary\OverviewController
+
+  vocabulary.sample_vocabulary_applier:
+    class: Kutny\Vocabulary\SampleVocabularyApplier
+
+  vocabulary.user_vocabulary.api.user_vocabulary_controller:
+    class: Kutny\Vocabulary\UserVocabulary\Api\UserVocabularyController
+
+  vocabulary.user_vocabulary.user_vocabulary_doorkeeper:
+    class: Kutny\Vocabulary\UserVocabulary\UserVocabularyDoorkeeper
+
+  vocabulary.user_vocabulary.user_vocabulary_insertion_facade:
+    class: Kutny\Vocabulary\UserVocabulary\UserVocabularyInsertionFacade
+
+  vocabulary.user_vocabulary.user_vocabulary_repository:
+    class: Kutny\Vocabulary\UserVocabulary\UserVocabularyRepository
+    arguments:
+      - @doctrine.orm.default_entity_manager
+
+  vocabulary.vocabulary_repository:
+    class: Kutny\Vocabulary\VocabularyRepository
+    arguments:
+      - @doctrine.orm.default_entity_manager
+
+  xml_rpc.client.seznam_slovnik_api:
+    class: KutnyLib\XmlRpc\Client
+    arguments:
+      - @translator.seznam.response_parser
+
+  xml_rpc.request_message_preparer:
+    class: KutnyLib\XmlRpc\RequestMessagePreparer
 
   yml.yml_sorter:
     class: KutnyLib\Yml\YmlSorter
