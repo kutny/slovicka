@@ -51,6 +51,11 @@ function TranslatorController($scope, $http, $location, $anchorScroll) {
 					$scope.userVocabularyId = data.recordId;
 				}
 
+				$scope.vocabulary = null;
+				$scope.translations = null;
+				$scope.userTranslation = null;
+				$scope.explanation = null;
+				$scope.note = null;
 				$scope.sendingRequest = false;
 			})
 			.error(function(data, status, headers, config) {
