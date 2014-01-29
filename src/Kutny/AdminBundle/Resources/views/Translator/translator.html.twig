@@ -19,15 +19,17 @@
 			</form>
 		</div>
 	</div>
-	<div class="row" ng-show="translations && !translations.length">
-		<p>No translation found</p>
-	</div>
-	<div class="row" ng-show="translations">
+	<div class="row" ng-show="translations !== null">
 		<ul class="unstyled">
 			<li ng-repeat="translation in translations"><a ng-click="prefillTranslation()"><small>[[ translation ]]</small></a></li>
 		</ul>
 	</div>
-	<div class="row" ng-show="translations">
+	<div class="row" ng-show="translations !== null && !translations.length">
+		<div class="col-lg-6">
+			<p>No translation found</p>
+		</div>
+	</div>
+	<div class="row" ng-show="translations !== null">
 		<div class="col-lg-6">
 			<form ng-submit="saveVocabulary()" id="saveVocabulary">
 				<blockquote>

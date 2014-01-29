@@ -1,5 +1,7 @@
 function TranslatorController($scope, $http, $location, $anchorScroll) {
 
+	$scope.translations = null;
+
 	$scope.findVocabulary = function() {
 		var apiEndpointUrl = apiBaseUrl + '/v1/translate?vocabulary=' + $scope.vocabulary;
 
