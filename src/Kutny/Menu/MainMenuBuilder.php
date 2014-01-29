@@ -16,9 +16,8 @@ class MainMenuBuilder {
 
 	public function createMainMenu() {
 		$menu = $this->factory->createItem('root');
-		$menu->setChildrenAttribute('class', 'nav nav-justified');
+		$menu->setChildrenAttribute('class', 'nav navbar-nav');
 
-		$menu->addChild('Dashboard', ['route' => 'route.dashboard']);
 		$menu->addChild('Translator', ['route' => 'route.translator']);
 		$menu->addChild('Practising', ['route' => 'route.practising']);
 

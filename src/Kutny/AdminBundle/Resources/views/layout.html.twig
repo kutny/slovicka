@@ -31,22 +31,25 @@
 <body>
 <div class="container">
 
-    <div class="masthead">
-        <div class="row">
-            <div class="col-md-8">
-                <h3 class="text-muted">Slovíčka</h3>
-            </div>
-            <div class="col-md-4 text-right current-user-info">
-                <strong>{{ app.user.username }}</strong> | <a href="{{ path('route.logout') }}">Logout</a>
-            </div>
-        </div>
-        {{ knp_menu_render('main') }}
-    </div>
+	<div class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">Slovíčka</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			{{ knp_menu_render('main', {'currentClass': 'active'}) }}
+		</div>
+	</div>
 
 	{% block content %}{% endblock %}
 
 	<footer class="footer">
-		<p>Powered by <a href="http://www.slovicka.cz/">Slovicka</a> platform</p>
+		<p>Logged as <strong>{{ app.user.username }}</strong> | <a href="{{ path('route.logout') }}">Logout</a></p>
 	</footer>
 </div>
 </body>
