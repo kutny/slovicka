@@ -37,6 +37,12 @@ class UserVocabularyRepository {
 		}
 	}
 
+	public function getRandomUserVocabularyId($userId) {
+		$connection = $this->entityManager->getConnection();
+
+		return $connection->query('SELECT id FROM user_vocabulary WHERE user_id = ' . $connection->quote($userId) . ' ORDER BY RAND() LIMIT 1')->fetchColumn();
+	}
+
 	/** @return UserVocabularyList */
 	public function fetchList(Filter $filter) {
 		return new UserVocabularyList($this->createFilteredQueryBuilder($filter)->getQuery()->getResult());

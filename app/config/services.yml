@@ -181,6 +181,15 @@ services:
   phpunit.test_skeleton_generator:
     class: KutnyLib\PhpUnit\TestSkeletonGenerator
 
+  practising.api.practising_controller:
+    class: Kutny\Practising\Api\PractisingController
+
+  practising.api.practising_facade:
+    class: Kutny\Practising\Api\PractisingFacade
+
+  practising.practising_controller:
+    class: Kutny\Practising\PractisingController
+
   reflection.method_code_exporter:
     class: KutnyLib\Reflection\MethodCodeExporter
 
@@ -305,9 +314,6 @@ services:
 
   vocabulary.normalizer:
     class: Kutny\Vocabulary\Normalizer
-
-  vocabulary.overview_controller:
-    class: Kutny\Vocabulary\OverviewController
 
   vocabulary.sample_vocabulary_applier:
     class: Kutny\Vocabulary\SampleVocabularyApplier

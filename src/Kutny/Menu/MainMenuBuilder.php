@@ -20,7 +20,7 @@ class MainMenuBuilder {
 
 		$menu->addChild('Dashboard', ['route' => 'route.dashboard']);
 		$menu->addChild('Translator', ['route' => 'route.translator']);
-		$menu->addChild('Vocabulary', ['route' => 'route.vocabulary']);
+		$menu->addChild('Practising', ['route' => 'route.practising']);
 
 		return $menu;
 	}

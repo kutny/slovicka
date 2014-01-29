@@ -1,19 +1,19 @@
 <?php
 
-namespace Kutny\Vocabulary;
+namespace Kutny\Practising;
 
 use KutnyLib\Templating\FillLayout;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class OverviewController {
+class PractisingController {
 
 	/**
-	 * @Route("/vocabulary", name="route.vocabulary")
+	 * @Route("/practising", name="route.practising")
 	 * @FillLayout(service="templating.layout_filler")
-	 * @Template("@KutnyAdmin/Vocabulary/overview.html.twig")
+	 * @Template("@KutnyAdmin/Practising/practising.html.twig")
 	 */
-	public function overviewAction() {
+	public function practisingAction() {
 		return array();
 	}
 

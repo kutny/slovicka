@@ -1,0 +1,34 @@
+{% extends "KutnyAdminBundle::layout.html.twig" %}
+
+{% block headAssets %}
+	<script type="text/javascript" src="{{ asset('bundles/kutnyadmin/js/PractisingController.js') }}"></script>
+{% endblock %}
+
+{% block title %}Practising{% endblock %}
+{% block content %}
+	<div class="jumbotron" ng-controller="PractisingController">
+		<div class="row">
+			<div class="col-lg-6">
+				<h2>[[ englishVocabulary ]]</h2>
+
+				<blockquote>
+					<small>[[ explanation ]]</small>
+				</blockquote>
+
+				<p ng-show="noteShown">
+					<small>[[ note ]]</small>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<form ng-submit="loadVocabulary()">
+					<div>
+						<button class="btn btn-default" type="button" ng-disabled="sendingRequest" ng-hide="!note || noteShown" ng-click="showHint()">Show hint</button>
+						<button class="btn btn-success" type="submit" ng-disabled="sendingRequest">[[ nextButtonLabel ]]</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
