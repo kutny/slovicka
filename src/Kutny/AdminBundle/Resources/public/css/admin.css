@@ -86,3 +86,7 @@ a {
         padding-right: 0;
     }
 }
+
+.clear_button, .clear_button:hover {
+	text-decoration: none;
+}

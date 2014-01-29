@@ -11,7 +11,7 @@
 		<div class="col-lg-6">
 			<form ng-submit="findVocabulary()">
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Enter vocabulary" ng-model="vocabulary" ng-disabled="sendingRequest" autofocus required />
+				<input type="text" class="form-control" placeholder="Enter vocabulary" ng-model="vocabulary" ng-disabled="sendingRequest" xng-clearable autofocus required />
 				<span class="input-group-btn">
 					<button class="btn btn-default" type="submit" ng-disabled="!vocabulary || sendingRequest">Go!</button>
 				</span>

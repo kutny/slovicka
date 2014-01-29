@@ -1,4 +1,4 @@
-var module = angular.module('slovicka', []);
+var module = angular.module('slovicka', ['xngClearable']);
 
 module
 	.config(['$interpolateProvider', function($interpolateProvider) {
