@@ -15,17 +15,28 @@
 					<small>[[ explanation ]]</small>
 				</blockquote>
 
-				<p ng-show="noteShown">
-					<small>[[ note ]]</small>
-				</p>
+				<div>
+					<button class="btn btn-default" type="button" ng-disabled="sendingRequest" ng-hide="!note || noteShown" ng-click="showHint()">Show hint</button>
+					<p ng-show="noteShown">
+						<small>[[ note ]]</small>
+					</p>
+				</div>
 			</div>
 		</div>
+		<hr />
 		<div class="row">
 			<div class="col-lg-6">
-				<form ng-submit="loadVocabulary()">
-					<div>
-						<button class="btn btn-default" type="button" ng-disabled="sendingRequest" ng-hide="!note || noteShown" ng-click="showHint()">Show hint</button>
-						<button class="btn btn-success" type="submit" ng-disabled="sendingRequest">[[ nextButtonLabel ]]</button>
+				<div ng-show="userTranslationShown">
+					<small>Correct: [[ userTranslation ]]</small>
+				</div>
+				<form>
+					<input type="hidden" ng-model="userVocabularyId" />
+					<div ng-show="responseButtonsShown">
+						<button class="btn btn btn-warning" type="button" ng-disabled="sendingRequest" ng-click="notSure()">Not sure</button>
+						<button class="btn btn-success" type="button" ng-disabled="sendingRequest" ng-click="iKnow()">I know</button>
+					</div>
+					<div ng-show="showNextButtonsShown">
+						<button class="btn btn-success" type="button" ng-disabled="sendingRequest" ng-click="showNext()">Show next</button>
 					</div>
 				</form>
 			</div>

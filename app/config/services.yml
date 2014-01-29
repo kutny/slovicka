@@ -181,6 +181,11 @@ services:
   phpunit.test_skeleton_generator:
     class: KutnyLib\PhpUnit\TestSkeletonGenerator
 
+  practising.answer.answer_repository:
+    class: Kutny\Practising\Answer\AnswerRepository
+    arguments:
+      - @doctrine.orm.default_entity_manager
+
   practising.api.practising_controller:
     class: Kutny\Practising\Api\PractisingController
 

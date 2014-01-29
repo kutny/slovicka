@@ -1,6 +1,6 @@
 <?php
 
-namespace Kutny\Vocabulary\UserVocabulary;
+namespace Kutny\Practising\Answer;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
@@ -8,7 +8,7 @@ use KutnyLib\Model\Filter\Filter;
 use KutnyLib\Model\FilteredQueryBuilderFactory;
 use KutnyLib\Model\GeneralFilterConverter;
 
-class UserVocabularyRepository {
+class AnswerRepository {
 
 	private $entityManager;
 	private $filteredQueryBuilderFactory;
@@ -24,7 +24,7 @@ class UserVocabularyRepository {
 		$this->filterConverter = $filterConverter;
 	}
 
-	/** @return UserVocabulary */
+	/** @return Answer */
 	public function fetch(Filter $filter) {
 		$queryBuilderFilter = $this->filterConverter->getQueryBuilderFilter($filter);
 		$queryBuilder = $this->filteredQueryBuilderFactory->createQueryBuilder($queryBuilderFilter);
@@ -37,28 +37,9 @@ class UserVocabularyRepository {
 		}
 	}
 
-	public function getRandomUserVocabularyId($userId, $correctAnswersLimit) {
-		$connection = $this->entityManager->getConnection();
-
-		return $connection->query('
-			SELECT
-				id
-			FROM
-				user_vocabulary
-			WHERE
-				user_id = ' . $connection->quote($userId) . '
-				AND correct_answers < ' . $connection->quote($correctAnswersLimit) . '
-				AND (last_correct_answer_at IS NULL OR last_correct_answer_at < CURDATE() OR correct_answers = 0)
-			ORDER BY
-				RAND()
-			LIMIT
-				1
-		')->fetchColumn();
-	}
-
-	/** @return UserVocabularyList */
+	/** @return AnswerList */
 	public function fetchList(Filter $filter) {
-		return new UserVocabularyList($this->createFilteredQueryBuilder($filter)->getQuery()->getResult());
+		return new AnswerList($this->createFilteredQueryBuilder($filter)->getQuery()->getResult());
 	}
 
 	public function fetchCount(Filter $filter) {
@@ -76,7 +57,7 @@ class UserVocabularyRepository {
 		return (bool) $queryBuilder->getQuery()->getOneOrNullResult();
 	}
 
-	public function save(UserVocabulary $entity) {
+	public function save(Answer $entity) {
 		$this->entityManager->persist($entity);
 		$this->entityManager->flush($entity);
 	}

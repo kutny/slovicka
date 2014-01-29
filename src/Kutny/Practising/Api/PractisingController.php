@@ -3,9 +3,11 @@
 namespace Kutny\Practising\Api;
 
 use Kutny\User\CurrentUserGetter;
+use KutnyLib\Controller\Action\Doorkeeper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class PractisingController {
 
@@ -21,19 +23,39 @@ class PractisingController {
 	}
 
 	/**
-	 * @Route("/v1/practise/get-vocabulary", name="route.api.v1.practise_next_vocabulary")
+	 * @Route("/v1/practise/get-vocabulary", name="route.api.v1.practise_get_vocabulary")
 	 * @Method("GET")
 	 */
-	public function getNextVocabularyAction() {
+	public function getVocabulary() {
+		return $this->createNextVocabularyResponse();
+	}
+
+	/**
+	 * @Route("/v1/practise/answer/{userVocabularyId}", name="route.api.v1.practise_answer")
+	 * @Doorkeeper(service="vocabulary.user_vocabulary.user_vocabulary_doorkeeper")
+	 * @Method("POST")
+	 */
+	public function answerAction($userVocabularyId, Request $request) {
+		$answeredCorrectly = (bool) $request->request->get('answeredCorrectly');
+
+		$answeredUserVocabulary = $this->practisingFacade->getUserVocabulary($userVocabularyId);
+
+		$this->practisingFacade->storeAnswer($answeredCorrectly, $answeredUserVocabulary);
+
+		return $this->createNextVocabularyResponse();
+	}
+
+	private function createNextVocabularyResponse() {
 		$currentUser = $this->currentUserGetter->getUserEntity();
-		$userVocabulary = $this->practisingFacade->getVocabulary($currentUser);
+
+		$newUserVocabulary = $this->practisingFacade->getVocabulary($currentUser);
 
 		return new JsonResponse([
-			'userVocabularyId' => $userVocabulary->getId(),
-			'englishVocabulary' => $userVocabulary->getVocabulary()->getEnglishVocabulary(),
-			'explanation' => $userVocabulary->getExplanation(),
-			'userTranslation' => $userVocabulary->getUserTranslation(),
-			'note' => $userVocabulary->getNote()
+			'userVocabularyId' => $newUserVocabulary->getId(),
+			'englishVocabulary' => $newUserVocabulary->getVocabulary()->getEnglishVocabulary(),
+			'explanation' => $newUserVocabulary->getExplanation(),
+			'userTranslation' => $newUserVocabulary->getUserTranslation(),
+			'note' => $newUserVocabulary->getNote()
 		]);
 	}
 

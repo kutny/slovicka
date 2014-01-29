@@ -9,7 +9,10 @@ use Kutny\Vocabulary\Vocabulary;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="user_vocabulary", columns={"user_id", "vocabulary_id"})})
+ * @ORM\Table(
+ *   uniqueConstraints={@ORM\UniqueConstraint(name="user_vocabulary", columns={"user_id", "vocabulary_id"})},
+ *   indexes={@ORM\Index(name="correct_answers", columns={"correct_answers"})}
+ * )
  * @ORM\Entity
  */
 class UserVocabulary {
@@ -55,6 +58,21 @@ class UserVocabulary {
 	 * @ORM\Column(type="string", length=1000, nullable=true)
 	 */
 	private $note;
+
+	/**
+	 * @ORM\Column(type="integer", nullable=false)
+	 */
+	private $correctAnswers;
+
+	/**
+	 * @var DateTime
+	 * @ORM\Column(type="datetime", nullable=true)
+	 */
+	private $lastCorrectAnswerAt;
+
+	public function __construct() {
+		$this->correctAnswers = 0;
+	}
 
 	public function setId($id) {
 		$this->id = $id;
@@ -110,6 +128,30 @@ class UserVocabulary {
 
 	public function getNote() {
 		return $this->note;
+	}
+
+	public function setCorrectAnswers($correctAnswers) {
+		$this->correctAnswers = $correctAnswers;
+	}
+
+	public function increaseCorrectAnswers() {
+		$this->correctAnswers++;
+	}
+
+	public function resetCorrectAnswers() {
+		$this->correctAnswers = 0;
+	}
+
+	public function getCorrectAnswers() {
+		return $this->correctAnswers;
+	}
+
+	public function setLastCorrectAnswerAt(DateTime $lastCorrectAnswerAt) {
+		$this->lastCorrectAnswerAt = $lastCorrectAnswerAt;
+	}
+
+	public function getLastCorrectAnswerAt() {
+		return $this->lastCorrectAnswerAt;
 	}
 
 }

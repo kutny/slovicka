@@ -1,39 +1,72 @@
 function PractisingController($scope, $http) {
 
-	$scope.noteShown = false;
-	$scope.nextButtonLabel = 'Show next';
+	$scope.setDefaultState = function() {
+		$scope.noteShown = false;
+		$scope.userTranslationShown = false;
+		$scope.responseButtonsShown = true;
+		$scope.showNextButtonsShown = false;
+		$scope.sendingRequest = false;
+	};
 
 	$scope.loadVocabulary = function() {
 		var apiEndpointUrl = apiBaseUrl + '/v1/practise/get-vocabulary';
 
+		$scope.sendRequest(apiEndpointUrl, 'GET', {});
+	};
+
+	$scope.storeAnswer = function(answeredCorrectly) {
+		var apiEndpointUrl = apiBaseUrl + '/v1/practise/answer/' + $scope.userVocabularyId;
+		var data = {answeredCorrectly: (answeredCorrectly ? 1 : 0)};
+
+		$scope.sendRequest(apiEndpointUrl, 'POST', data);
+	};
+
+	$scope.sendRequest = function(apiEndpointUrl, method, data) {
 		$scope.sendingRequest = true;
 
 		if ($scope.englishVocabulary) {
-			$scope.nextButtonLabel = 'Correct: ' + $scope.userTranslation;
+			$scope.userTran = 'Correct: ' + $scope.userTranslation;
 		}
 
-		$http.get(apiEndpointUrl)
+		$http({'method': method, url: apiEndpointUrl, data: data})
 			.success(function(data) {
+				$scope.userVocabularyId = data.userVocabularyId;
 				$scope.englishVocabulary = data.englishVocabulary;
 				$scope.userTranslation = data.userTranslation;
 				$scope.explanation = data.explanation;
 				$scope.note = data.note;
 
-				$scope.sendingRequest = false;
-				$scope.noteShown = false;
-				$scope.nextButtonLabel = 'Show next';
+				$scope.setDefaultState();
 			})
 			.error(function() {
-				$scope.sendingRequest = false;
-				$scope.noteShown = false;
-				$scope.nextButtonLabel = 'Show next';
+				$scope.setDefaultState();
 			})
+	};
+
+	$scope.notSure = function() {
+		$scope.userTranslationShown = true;
+		$scope.responseButtonsShown = false;
+		$scope.showNextButtonsShown = true;
+	};
+
+	$scope.iKnow = function() {
+		$scope.userTranslationShown = true;
+		$scope.responseButtonsShown = false;
+
+		$scope.storeAnswer(true);
+	};
+
+	$scope.showNext = function() {
+		$scope.userTranslationShown = true;
+
+		$scope.storeAnswer(false);
 	};
 
 	$scope.showHint = function() {
 		$scope.noteShown = true;
 	};
 
+	$scope.setDefaultState();
 	$scope.loadVocabulary();
 
 }
