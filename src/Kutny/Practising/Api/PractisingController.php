@@ -50,6 +50,12 @@ class PractisingController {
 
 		$newUserVocabulary = $this->practisingFacade->getVocabulary($currentUser);
 
+		if (!$newUserVocabulary) {
+			return new JsonResponse([
+				'userVocabularyId' => null
+			]);
+		}
+
 		return new JsonResponse([
 			'userVocabularyId' => $newUserVocabulary->getId(),
 			'englishVocabulary' => $newUserVocabulary->getVocabulary()->getEnglishVocabulary(),

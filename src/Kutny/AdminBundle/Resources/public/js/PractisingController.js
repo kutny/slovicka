@@ -1,4 +1,4 @@
-function PractisingController($scope, $http) {
+function PractisingController($scope, $http, $window) {
 
 	$scope.setDefaultState = function() {
 		$scope.noteShown = false;
@@ -30,17 +30,35 @@ function PractisingController($scope, $http) {
 
 		$http({'method': method, url: apiEndpointUrl, data: data})
 			.success(function(data) {
-				$scope.userVocabularyId = data.userVocabularyId;
-				$scope.englishVocabulary = data.englishVocabulary;
-				$scope.userTranslation = data.userTranslation;
-				$scope.explanation = data.explanation;
-				$scope.note = data.note;
+				if (!data.userVocabularyId) {
+					alert('No more vocabulary for today\'s practising, add some more!');
+					$window.location = '/translator';
+				}
+
+				if ($scope.getRandomArbitrary(1, 4) > 2) {
+					$scope.userVocabularyId = data.userVocabularyId;
+					$scope.englishVocabulary = data.englishVocabulary;
+					$scope.userTranslation = data.userTranslation;
+					$scope.explanation = data.explanation;
+					$scope.note = data.note;
+				}
+				else {
+					$scope.userVocabularyId = data.userVocabularyId;
+					$scope.englishVocabulary = data.userTranslation;
+					$scope.userTranslation = data.englishVocabulary;
+					$scope.explanation = data.explanation;
+					$scope.note = null;
+				}
 
 				$scope.setDefaultState();
 			})
 			.error(function() {
 				$scope.setDefaultState();
 			})
+	};
+
+	$scope.getRandomArbitrary = function(min, max) {
+		return Math.random() * (max - min) + min;
 	};
 
 	$scope.notSure = function() {
