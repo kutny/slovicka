@@ -3,8 +3,8 @@
 namespace Kutny\Vocabulary;
 
 use Kutny\FixturesBundle\ISampleDataApplier;
-use Kutny\User\userRepository;
 use Kutny\User\UserFilter;
+use Kutny\User\UserRepository;
 use Kutny\Vocabulary\UserVocabulary\UserVocabularyInsertionFacade;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -67,11 +67,8 @@ class SampleVocabularyApplier implements ISampleDataApplier {
 	private function createVocabulary($vocabulary, $userTranslation, $explanation, $note) {
 		$user = $this->getUser(1);
 
-		$userVocabulary = $this->userVocabularyInsertionFacade->insert($vocabulary, $user);
-
-		$userVocabulary->setUserTranslation($userTranslation);
+		$userVocabulary = $this->userVocabularyInsertionFacade->insert($vocabulary, $userTranslation, $note, $user);
 		$userVocabulary->setExplanation($explanation);
-		$userVocabulary->setNote($note);
 
 		$this->userVocabularyInsertionFacade->update($userVocabulary);
 	}

@@ -21,7 +21,7 @@
 		}
 	],
     "require": {
-        "php": ">=5.5.6",
+        "php": ">=5.5.3",
         "symfony/symfony": "2.3.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.2.*",
@@ -46,7 +46,11 @@
         "knplabs/knp-menu": "dev-master",
         "tijsverkoyen/css-to-inline-styles": "1.2.*",
         "kutny/no-bundle-controllers-bundle": "dev-master",
-        "kutny/fixtures-bundle": "dev-master"
+        "kutny/fixtures-bundle": "dev-master",
+		"facebook/webdriver": "dev-master",
+		"phing/phing": "dev-master",
+		"squizlabs/php_codesniffer": "1.*",
+		"kutny/phpcs-symfony": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

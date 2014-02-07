@@ -1,0 +1,9 @@
+machine:
+  php:
+    version: 5.5.3
+  environment:
+    KUTNY_ENVIRONMENT: test
+  hosts:
+    slovicka.my: 127.0.0.1
+  services:
+    - mysql
