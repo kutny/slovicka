@@ -2,6 +2,7 @@
 
 namespace KutnyLib\DateTime;
 
+use DateTime as DateTimePhp;
 use InvalidArgumentException;
 
 class Date {
@@ -26,7 +27,7 @@ class Date {
 		);
 	}
 
-	public static function fromDateTime(\DateTime $dateTime) {
+	public static function fromDateTime(DateTimePhp $dateTime) {
 		return new Date(
 			$dateTime->format('Y'),
 			$dateTime->format('m'),
@@ -67,6 +68,6 @@ class Date {
 	}
 
 	public function toDateTime() {
-		return new \DateTime(date("c", mktime(0, 0, 0, $this->month, $this->day, $this->year)));
+		return new DateTimePhp(date("c", mktime(0, 0, 0, $this->month, $this->day, $this->year)));
 	}
 }

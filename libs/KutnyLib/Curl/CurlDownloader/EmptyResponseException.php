@@ -2,6 +2,8 @@
 
 namespace KutnyLib\Curl\CurlDownloader;
 
-class EmptyResponseException extends \Exception {
+use Exception;
+
+class EmptyResponseException extends Exception {
 
 }

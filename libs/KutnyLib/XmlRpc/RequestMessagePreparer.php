@@ -2,8 +2,6 @@
 
 namespace KutnyLib\XmlRpc;
 
-use KutnyLib\Curl\CurlDownloader;
-
 class RequestMessagePreparer {
 
 	public function createXmlData(Message $message) {

@@ -3,10 +3,10 @@
 namespace KutnyLib\Model;
 
 use KutnyLib\Model\QueryBuilderFilter\Join;
+use KutnyLib\Model\QueryBuilderFilter\JoinWith;
 use KutnyLib\Model\QueryBuilderFilter\LeftJoin;
 use KutnyLib\Model\QueryBuilderFilter\LeftJoinWith;
 use KutnyLib\Model\QueryBuilderFilter\OrderItem;
-use KutnyLib\Model\QueryBuilderFilter\JoinWith;
 
 class QueryBuilderFilter {
 

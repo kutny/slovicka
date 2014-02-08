@@ -2,6 +2,8 @@
 
 namespace KutnyLib\Curl\CurlDownloader;
 
+use Exception;
+
 class ResponseParser {
 
 	private $bodyDecoder;
@@ -10,8 +12,7 @@ class ResponseParser {
 		$this->bodyDecoder = $bodyDecoder;
 	}
 
-	public function extractCode($responseString)
-	{
+	public function extractCode($responseString) {
 		preg_match("|^HTTP/[\d\.x]+ (\d+)|", $responseString, $m);
 
 		if (isset($m[1])) {
@@ -28,8 +29,7 @@ class ResponseParser {
 	 * @param   string $responseString
 	 * @return  array
 	 */
-	public function extract($responseString, $ttl = 10)
-	{
+	public function extract($responseString, $ttl = 10) {
 		$responses = array();
 
 		$this->parsePart($responseString, $responses, $ttl);
@@ -39,7 +39,7 @@ class ResponseParser {
 
 	private function parsePart($responseString, &$responses, $ttl) {
 		if ($ttl <= 0) {
-			throw new \Exception('Too many function calls');
+			throw new Exception('Too many function calls');
 		}
 
 		$ttl--;
@@ -84,9 +84,11 @@ class ResponseParser {
 		unset($parts);
 		$last_header = null;
 
-		foreach($lines as $line) {
+		foreach ($lines as $line) {
 			$line = trim($line, "\r\n");
-			if ($line == "") break;
+			if ($line === '') {
+				break;
+			}
 
 			// Locate headers like 'Location: ...' and 'Location:...' (note the missing space)
 			if (preg_match("|^([\w-]+):\s*(.+)|", $line, $m)) {

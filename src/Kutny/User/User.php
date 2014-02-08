@@ -4,15 +4,16 @@ namespace Kutny\User;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Serializable;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  */
-class User implements UserInterface, \Serializable {
+class User implements UserInterface, Serializable {
 
-    const ROLE_USER = 'ROLE_USER';
+	const ROLE_USER = 'ROLE_USER';
 
 	/**
 	 * @ORM\Column(type="integer")

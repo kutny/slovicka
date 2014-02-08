@@ -9,8 +9,8 @@ use KutnyLib\DateTime\DateTimeFactory;
 class RegistrationFacade {
 
 	private $bcryptIterations;
-    private $dateTimeFactory;
-    private $userRepository;
+	private $dateTimeFactory;
+	private $userRepository;
 	private $welcomeEmailCreator;
 
 	public function __construct(

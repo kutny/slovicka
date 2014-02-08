@@ -4,6 +4,7 @@ namespace Kutny\Mail\Queue;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
+use Exception;
 
 class MailQueueRepository {
 
@@ -62,7 +63,7 @@ class MailQueueRepository {
 						$orderAttributeName = 'mailQueueItemState.id';
 						break;
 					default:
-						throw new \Exception('Unknown order item name \'' . $orderItemName . '\'');
+						throw new Exception('Unknown order item name \'' . $orderItemName . '\'');
 				}
 
 				$orderDirection = $orderItem[$orderItemName] ? 'ASC' : 'DESC';
@@ -81,7 +82,7 @@ class MailQueueRepository {
 					$queryBuilder->join('mailQueueItem.state', 'mailQueueItemState');
 					break;
 				default:
-					throw new \Exception('Unknown join \'' . $join . '\'');
+					throw new Exception('Unknown join \'' . $join . '\'');
 			}
 		}
 

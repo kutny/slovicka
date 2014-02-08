@@ -2,6 +2,7 @@
 
 namespace KutnyLib\DateTime;
 
+use DateInterval;
 use InvalidArgumentException;
 
 class DateTime {
@@ -78,19 +79,19 @@ class DateTime {
 
 	public function addDays($days) {
 		$thisDateTime = $this->toDateTime();
-		$thisDateTime->add(new \DateInterval('P' . $days . 'D'));
+		$thisDateTime->add(new DateInterval('P' . $days . 'D'));
 
 		return self::fromTimestamp($thisDateTime->getTimestamp());
 	}
 
-	public function addInterval(\DateInterval $interval) {
+	public function addInterval(DateInterval $interval) {
 		$thisDateTime = $this->toDateTime();
 		$thisDateTime->add($interval);
 
 		return self::fromTimestamp($thisDateTime->getTimestamp());
 	}
 
-	public function subInterval(\DateInterval $interval) {
+	public function subInterval(DateInterval $interval) {
 		$thisDateTime = $this->toDateTime();
 		$thisDateTime->sub($interval);
 
@@ -101,18 +102,18 @@ class DateTime {
 		$weekendDays = ((int)($days / 5) * 2);
 
 		$thisDateTime = $this->toDateTime();
-		$thisDateTime->add(new \DateInterval('P' . ($days + $weekendDays) . 'D'));
+		$thisDateTime->add(new DateInterval('P' . ($days + $weekendDays) . 'D'));
 
 		if ($thisDateTime->format('N') < $this->toDateTime()->format('N')) {
-			$thisDateTime->add(new \DateInterval('P' . ((int)$this->toDateTime()->format('N') === 7 ? 1 : 2) . 'D'));
+			$thisDateTime->add(new DateInterval('P' . ((int)$this->toDateTime()->format('N') === 7 ? 1 : 2) . 'D'));
 		}
 
 		if ((int)$thisDateTime->format('N') === 7) {
-			$thisDateTime->add(new \DateInterval('P' . 1 . 'D'));
+			$thisDateTime->add(new DateInterval('P' . 1 . 'D'));
 		}
 
 		if ((int)$thisDateTime->format('N') === 6) {
-			$thisDateTime->add(new \DateInterval('P' . 2 . 'D'));
+			$thisDateTime->add(new DateInterval('P' . 2 . 'D'));
 		}
 
 		return self::fromTimestamp($thisDateTime->getTimestamp());
@@ -120,7 +121,7 @@ class DateTime {
 
 	public function subDays($days) {
 		$thisDateTime = $this->toDateTime();
-		$thisDateTime->sub(new \DateInterval('P' . $days . 'D'));
+		$thisDateTime->sub(new DateInterval('P' . $days . 'D'));
 
 		return self::fromTimestamp($thisDateTime->getTimestamp());
 	}

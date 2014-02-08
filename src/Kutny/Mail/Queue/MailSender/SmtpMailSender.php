@@ -3,17 +3,19 @@
 namespace Kutny\Mail\Queue\MailSender;
 
 use Kutny\Mail\Queue\MailQueueItem;
+use Swift_Mailer;
+use Swift_Message;
 
 class SmtpMailSender implements IMailSender {
 
 	private $swiftMailer;
 
-	public function __construct(\Swift_Mailer $swiftMailer) {
+	public function __construct(Swift_Mailer $swiftMailer) {
 		$this->swiftMailer = $swiftMailer;
 	}
 
 	public function send(MailQueueItem $mailQueueItem) {
-		$message = \Swift_Message::newInstance();
+		$message = Swift_Message::newInstance();
 
 		$message->setSubject($mailQueueItem->getSubject());
 		$message->setFrom($mailQueueItem->getFromMail(), $mailQueueItem->getFromName());

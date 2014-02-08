@@ -2,9 +2,9 @@
 
 namespace Kutny\User;
 
+use Kutny\FixturesBundle\ISampleDataApplier;
 use Kutny\User\Registration\Registration;
 use Kutny\User\Registration\RegistrationFacade;
-use Kutny\FixturesBundle\ISampleDataApplier;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class UserSampleDataApplier implements ISampleDataApplier {

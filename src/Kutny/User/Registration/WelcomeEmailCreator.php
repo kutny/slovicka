@@ -24,7 +24,7 @@ class WelcomeEmailCreator {
 			'name' => $user->getName()
 		);
 
-		$mailMessage = $this->templateFactory->create('welcomeEmail', __DIR__ . '/WelcomeEmailCreator' , 'cs', $mailVariables);
+		$mailMessage = $this->templateFactory->create('welcomeEmail', __DIR__ . '/WelcomeEmailCreator', 'cs', $mailVariables);
 
 		$this->mailer->sendToUser($mailMessage, $user);
 	}

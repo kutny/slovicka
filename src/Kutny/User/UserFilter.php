@@ -2,6 +2,7 @@
 
 namespace Kutny\User;
 
+use Exception;
 use KutnyLib\Model\Filter\Filter;
 use KutnyLib\Model\QueryBuilderFilter\Condition;
 use KutnyLib\Model\QueryBuilderFilter\Parameter;
@@ -30,7 +31,7 @@ class UserFilter extends Filter {
 			$condition = new Condition('user.active = 0');
 		}
 		else {
-			throw new \Exception('Unexpected value: ' . var_export($active));
+			throw new Exception('Unexpected value: ' . var_export($active));
 		}
 
 		$this->add($condition);

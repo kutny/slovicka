@@ -2,13 +2,15 @@
 
 namespace KutnyLib\Curl\CurlDownloader;
 
+use Exception;
+
 class RawPostData implements IPostData {
 
 	private $rawPostDataString;
 
 	public function __construct($rawPostDataString) {
 		if ((string)$rawPostDataString !== $rawPostDataString) {
-			throw new \Exception('RAW POST data must be string');
+			throw new Exception('RAW POST data must be string');
 		}
 
 		$this->rawPostDataString = $rawPostDataString;

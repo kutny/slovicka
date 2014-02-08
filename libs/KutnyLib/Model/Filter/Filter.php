@@ -10,9 +10,15 @@ abstract class Filter {
 	private $limit;
 	private $offset;
 	private $conditions;
-	private $joins = [];
-	private $orderByAttributes = [];
-	private $orderIndex = 0;
+	private $joins;
+	private $orderByAttributes;
+	private $orderIndex;
+
+	public final function __construct() {
+		$this->joins = [];
+		$this->orderByAttributes = [];
+		$this->orderIndex = 0;
+	}
 
 	public function setLimit($limit) {
 		$this->limit = $limit;

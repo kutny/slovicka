@@ -2,6 +2,7 @@
 
 namespace KutnyLib\Contact;
 
+use Exception;
 use KutnyLib\Parser\IParser;
 
 class PhoneNumberParser implements IParser {
@@ -21,7 +22,7 @@ class PhoneNumberParser implements IParser {
 			return new PhoneNumber($matches[1], $matches[2]);
 		}
 		else if (preg_match('~^(?:\+|00)~', $value)) {
-			throw new \Exception('Unexpected coutry code in phone number: ' . $value);
+			throw new Exception('Unexpected coutry code in phone number: ' . $value);
 		}
 		else {
 			return new PhoneNumber(null, $value);

@@ -2,7 +2,7 @@
 
 namespace KutnyLib\Model;
 
-use KutnyLib\Collection\ArrayList;
+use KutnyLib\Collection\ArrayList\ArrayList;
 use KutnyLib\Collection\Pair;
 
 class EntityList extends ArrayList {

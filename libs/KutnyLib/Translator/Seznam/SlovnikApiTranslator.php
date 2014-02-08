@@ -2,7 +2,6 @@
 
 namespace KutnyLib\Translator\Seznam;
 
-use KutnyLib\Curl\CurlDownloader;
 use KutnyLib\Translator\TranslationList;
 use KutnyLib\XmlRpc\Client;
 use KutnyLib\XmlRpc\Message;

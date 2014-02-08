@@ -2,7 +2,9 @@
 
 namespace KutnyLib\Model\QueryBuilderFilterApplier;
 
-class InconsistentJoinsException extends \Exception {
+use Exception;
+
+class InconsistentJoinsException extends Exception {
 
 	public function __construct($entityClassName, $previousJoinAlias, $currentJoinAlias) {
 		parent::__construct(

@@ -2,8 +2,6 @@
 
 namespace KutnyLib\Collection\ArrayList;
 
-use KutnyLib\Collection\ArrayList;
-
 class StringArrayList extends ArrayList {
 
 	public function join($glue) {

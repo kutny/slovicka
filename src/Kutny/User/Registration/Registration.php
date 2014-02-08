@@ -2,8 +2,8 @@
 
 namespace Kutny\User\Registration;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use Kutny\User\EmailUniqueConstraint;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Registration {
 
@@ -25,19 +25,19 @@ class Registration {
 	private $password;
 
 	public function setName($name) {
-	   $this->name = $name;
+		$this->name = $name;
 	}
 
 	public function getName() {
-	   return $this->name;
+		return $this->name;
 	}
 
 	public function setEmail($email) {
-	   $this->email = $email;
+		$this->email = $email;
 	}
 
 	public function getEmail() {
-	   return $this->email;
+		return $this->email;
 	}
 
 	public function setPassword($password) {

@@ -2,9 +2,9 @@
 
 namespace KutnyLib\Db\DoctrineMapping;
 
-use KutnyLib\Db\IQuoter;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
+use KutnyLib\Db\IQuoter;
 
 class ResultSetSelectClauseBuilder {
 

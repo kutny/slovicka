@@ -2,12 +2,15 @@
 
 namespace Kutny\Mail\Template;
 
+use Exception;
+use Twig_Environment;
+
 class MailRenderer {
 
 	private $twigRenderer;
 
 	public function __construct(
-		\Twig_Environment $twigRenderer
+		Twig_Environment $twigRenderer
 	) {
 		$this->twigRenderer = $twigRenderer;
 	}
@@ -16,7 +19,7 @@ class MailRenderer {
 		$templatePath = $template->getTemplateFilePath($partType);
 
 		if (!file_exists($templatePath)) {
-			throw new \Exception('Template does not exist: ' . $templatePath);
+			throw new Exception('Template does not exist: ' . $templatePath);
 		}
 
 		$templateContent = file_get_contents($templatePath);

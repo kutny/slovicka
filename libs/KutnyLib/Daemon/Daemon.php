@@ -35,7 +35,7 @@ class Daemon implements IDaemon {
 	}
 
 	public function registerSignalHandlers() {
-		if (PHP_OS == 'Linux') {
+		if (PHP_OS === 'Linux') {
 			pcntl_signal(SIGTERM, array($this, 'signalHandler'));
 			pcntl_signal(SIGINT, array($this, 'signalHandler'));
 		}

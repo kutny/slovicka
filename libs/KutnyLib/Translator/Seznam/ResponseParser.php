@@ -2,6 +2,7 @@
 
 namespace KutnyLib\Translator\Seznam;
 
+use Exception;
 use KutnyLib\Curl\CurlDownloader\Response;
 use KutnyLib\Translator\Translation;
 use KutnyLib\Translator\TranslationList;
@@ -17,7 +18,7 @@ class ResponseParser implements IResponseParser {
 		$status = (int)$xml->params->param->value->struct->member->value->i4;
 
 		if ($status !== 200) {
-			throw new \Exception('Status: ' . $status);
+			throw new Exception('Status: ' . $status);
 		}
 
 		$members = $xml->params->param->value->struct->member[2]->value->array->data->value;

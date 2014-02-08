@@ -5,6 +5,7 @@ namespace KutnyLib\Controller\Action;
 use CG\Proxy\MethodInterceptorInterface;
 use CG\Proxy\MethodInvocation;
 use Doctrine\Common\Annotations\Reader;
+use Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +37,7 @@ class DoorkeeperInterceptor implements MethodInterceptorInterface {
 			return $checkResult;
 		}
 		else {
-			throw new \Exception('Unexpected Doorkeeper check result: ' . var_export($checkResult, true));
+			throw new Exception('Unexpected Doorkeeper check result: ' . var_export($checkResult, true));
 		}
 	}
 

@@ -2,15 +2,16 @@
 
 namespace KutnyLib\Model;
 
+use Doctrine\ORM\QueryBuilder;
+use Exception;
 use KutnyLib\Model\Filter\OrderItem;
 use KutnyLib\Model\QueryBuilderFilter\Join;
+use KutnyLib\Model\QueryBuilderFilter\JoinWith;
 use KutnyLib\Model\QueryBuilderFilter\LeftJoin;
 use KutnyLib\Model\QueryBuilderFilter\LeftJoinWith;
-use KutnyLib\Model\QueryBuilderFilter\JoinWith;
 use KutnyLib\Model\QueryBuilderFilterApplier\InconsistentJoinsException;
 use KutnyLib\Model\QueryBuilderFilterApplier\InvalidOrderAscendingValueException;
 use KutnyLib\Model\QueryBuilderFilterApplier\InvalidOrderException;
-use Doctrine\ORM\QueryBuilder;
 
 class QueryBuilderFilterApplier implements IQueryBuilderFilterApplier {
 
@@ -71,7 +72,7 @@ class QueryBuilderFilterApplier implements IQueryBuilderFilterApplier {
 						break;
 
 					default:
-						throw new \Exception('Invalid JOIN type: ' . get_class($join));
+						throw new Exception('Invalid JOIN type: ' . get_class($join));
 
 				}
 			}

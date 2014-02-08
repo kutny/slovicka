@@ -2,6 +2,8 @@
 
 namespace KutnyLib\Curl\CurlDownloader;
 
+use Exception;
+
 class BodyDecoder {
 
 	public function decodeBody($body, $contentEncoding) {
@@ -28,7 +30,7 @@ class BodyDecoder {
 	 */
 	private function decodeGzip($body) {
 		if (!function_exists('gzinflate')) {
-			throw new \Exception('zlib extension is required in order to decode "gzip" encoding');
+			throw new Exception('zlib extension is required in order to decode "gzip" encoding');
 		}
 
 		return @gzinflate(substr($body, 10));
@@ -38,10 +40,9 @@ class BodyDecoder {
 	 * Decode a zlib deflated message (when Content-encoding = deflate)
 	 * Currently requires PHP with zlib support
 	 */
-	private function decodeDeflate($body)
-	{
+	private function decodeDeflate($body) {
 		if (!function_exists('gzuncompress')) {
-			throw new \Exception('zlib extension is required in order to decode "deflate" encoding');
+			throw new Exception('zlib extension is required in order to decode "deflate" encoding');
 		}
 
 		/**
@@ -57,7 +58,7 @@ class BodyDecoder {
 		 */
 		$zlibHeader = unpack('n', substr($body, 0, 2));
 
-		if ($zlibHeader[1] % 31 == 0) {
+		if ($zlibHeader[1] % 31 === 0) {
 			return @gzuncompress($body);
 		}
 		else {

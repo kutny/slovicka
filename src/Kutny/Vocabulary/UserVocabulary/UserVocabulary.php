@@ -6,7 +6,6 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Kutny\User\User;
 use Kutny\Vocabulary\Vocabulary;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(

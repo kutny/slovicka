@@ -1,12 +1,16 @@
 <?php
 
-namespace KutnyLib\Collection;
+namespace KutnyLib\Collection\ArrayList;
 
 use ArrayAccess;
 use ArrayIterator;
 use Countable;
+use Exception;
 use InvalidArgumentException;
 use IteratorAggregate;
+use KutnyLib\Collection\CannotReduceException;
+use KutnyLib\Collection\CannotZipException;
+use KutnyLib\Collection\Pair;
 use Traversable;
 
 class ArrayList implements IteratorAggregate, ArrayAccess, Countable {
@@ -45,14 +49,14 @@ class ArrayList implements IteratorAggregate, ArrayAccess, Countable {
 	 * @inheritdoc
 	 */
 	public function offsetSet($offset, $value) {
-		throw new \Exception('Not supported');
+		throw new Exception('Not supported');
 	}
 
 	/**
 	 * @inheritdoc
 	 */
 	public function offsetUnset($offset) {
-		throw new \Exception('Not supported');
+		throw new Exception('Not supported');
 	}
 
 	public function map(callable $mapCallback) {

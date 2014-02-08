@@ -2,6 +2,8 @@
 
 namespace KutnyLib\Curl\CurlDownloader;
 
+use Exception;
+
 class Config {
 
 	private $url;
@@ -10,12 +12,12 @@ class Config {
 	private $cookiesStorageFile;
 	private $maxRedirects;
 	private $postData;
-
-	private $headers = array();
+	private $headers;
 
 	public function __construct($url) {
 		$this->url = $url;
 		$this->useCookies = false;
+		$this->headers = array();
 	}
 
 	public function getUrl() {
@@ -65,7 +67,7 @@ class Config {
 
 	public function setHeader($name, $value, $overwrite = false) {
 		if (array_key_exists($name, $this->headers) && $overwrite === false) {
-			throw new \Exception('Header "' . $name . '" already defined');
+			throw new Exception('Header "' . $name . '" already defined');
 		}
 
 		$this->headers[$name] = $value;

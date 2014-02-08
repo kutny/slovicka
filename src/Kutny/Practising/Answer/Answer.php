@@ -2,9 +2,9 @@
 
 namespace Kutny\Practising\Answer;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Kutny\Vocabulary\UserVocabulary\UserVocabulary;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -36,7 +36,7 @@ class Answer {
 	 */
 	private $answeredAt;
 
-	public function __construct($answeredCorrectly, UserVocabulary $userVocabulary, \DateTime $answeredAt) {
+	public function __construct($answeredCorrectly, UserVocabulary $userVocabulary, DateTime $answeredAt) {
 		$this->answeredCorrectly = $answeredCorrectly;
 		$this->userVocabulary = $userVocabulary;
 		$this->answeredAt = $answeredAt;

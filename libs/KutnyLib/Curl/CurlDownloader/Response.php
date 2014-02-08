@@ -6,9 +6,9 @@ class Response {
 
 	private $body;
 	private $status;
-	private $headers = array();
+	private $headers;
 
-	public function __construct($body, $status, array $headers) {
+	public function __construct($body, $status, array $headers = array()) {
 		$this->body = $body;
 		$this->status = $status;
 		$this->headers = $headers;

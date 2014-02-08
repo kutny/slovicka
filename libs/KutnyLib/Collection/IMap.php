@@ -2,8 +2,10 @@
 
 namespace KutnyLib\Collection;
 
+/** @codingStandardsIgnoreStart */
 use Countable;
 use IteratorAggregate;
+/** @codingStandardsIgnoreEnd */
 
 interface IMap extends Countable, IteratorAggregate {
 
