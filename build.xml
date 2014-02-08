@@ -1,5 +1,7 @@
 <project name="slovicka" default="build">
 
+	<property environment="env" />
+
 	<fileset id="library" dir="${project.basedir}/libs">
 		<include name="**/*.php"/>
 	</fileset>
@@ -29,6 +31,17 @@
 	</target>
 
 	<target name="prepare" depends="cleanup" description="Workspace preparation">
+		<echo>project.basedir: ${project.basedir}</echo>
+		<if>
+			<isset property="env.CIRCLE_ARTIFACTS"/>
+			<then>
+				<property name="buildOutputPath" value="${env.CIRCLE_ARTIFACTS}"/>
+			</then>
+			<else>
+				<property name="buildOutputPath" value="${project.basedir}/build"/>
+			</else>
+		</if>
+		<echo>buildOutputPath: ${buildOutputPath}</echo>
 	</target>
 
 	<target name="lint" depends="prepare" description="PHP Lint check">
@@ -45,7 +58,7 @@
 			<fileset refid="phpunitTests"/>
 			<config name="installed_paths" value="${project.basedir}/vendor/kutny/phpcs-symfony/Standards"/>
 			<formatter type="summary" usefile="false" />
-			<formatter type="checkstyle" usefile="true" outfile="${project.basedir}/build/phpcs-checkstyle.xml" />
+			<formatter type="checkstyle" usefile="true" outfile="${buildOutputPath}/phpcs-checkstyle.xml" />
 		</phpcodesniffer>
 	</target>
 
