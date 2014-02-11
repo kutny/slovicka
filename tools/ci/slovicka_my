@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+  DocumentRoot /home/ubuntu/slovicka/web
+  ServerName slovicka.my
+  SetEnv KUTNY_ENVIRONMENT test
+  AccessFileName .htaccess
+  <Directory /home/ubuntu/slovicka>
+    Options Includes FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    allow from all
+  </Directory>
+</VirtualHost>

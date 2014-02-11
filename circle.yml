@@ -7,3 +7,26 @@ machine:
     slovicka.my: 127.0.0.1
   services:
     - mysql
+dependencies:
+  pre:
+    - wget -O /tmp/selenium-server-standalone-2.39.0.jar "https://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar"
+    - java -jar /tmp/selenium-server-standalone-2.39.0.jar:
+        background: true
+  post:
+    - chmod +x app/console
+    - app/console doctrine:database:drop --env=test --no-interaction --force
+    - app/console doctrine:database:create --env=test --no-interaction
+    - app/console fsd:apply --env=test --no-backup
+    - app/console assets:install --env=test
+    - app/console assetic:dump --env=test
+    - ~/slovicka/bin/phing -f ~/slovicka/build.xml
+    - cp ~/slovicka/tools/ci/slovicka_my /etc/apache2/sites-available
+    - rm /etc/apache2/sites-enabled/000-default
+    - a2enmod rewrite
+    - a2ensite slovicka_my
+    - chmod 0777 -R ~/slovicka/app/
+    - sudo service apache2 restart
+test:
+  override:
+    - phpunit --configuration tests/phpunit/phpunit-all.xml
+    - phpunit --configuration tests/phpunit/phpunit-selenium.xml
