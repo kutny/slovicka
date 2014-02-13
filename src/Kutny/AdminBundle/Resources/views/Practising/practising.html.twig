@@ -20,23 +20,21 @@
 					<p ng-show="noteShown">
 						<small>[[ note ]]</small>
 					</p>
+					<button class="btn btn-default" type="button" ng-disabled="sendingRequest" ng-click="showTranslation()" ng-hide="userTranslationShown">Show translation</button>
+					<p ng-show="userTranslationShown">
+						<small>Correct: [[ userTranslation ]]</small>
+					</p>
 				</div>
 			</div>
 		</div>
-		<hr />
-		<div class="row">
+		<div class="row" ng-show="userTranslationShown">
 			<div class="col-lg-6">
-				<div ng-show="userTranslationShown">
-					<small>Correct: [[ userTranslation ]]</small>
-				</div>
 				<form>
 					<input type="hidden" ng-model="userVocabularyId" />
-					<div ng-show="responseButtonsShown">
-						<button class="btn btn btn-warning" type="button" ng-disabled="sendingRequest" ng-click="notSure()">Not sure</button>
-						<button class="btn btn-success" type="button" ng-disabled="sendingRequest" ng-click="iKnow()">I know</button>
-					</div>
-					<div ng-show="showNextButtonsShown">
-						<button class="btn btn-success" type="button" ng-disabled="sendingRequest" ng-click="showNext()">Show next</button>
+					<div>
+						Know?
+						<button class="btn btn btn-warning" type="button" ng-disabled="sendingRequest" ng-click="nextVocabulary(false)">No</button>
+						<button class="btn btn-success" type="button" ng-disabled="sendingRequest" ng-click="nextVocabulary(true)">Yes</button>
 					</div>
 				</form>
 			</div>

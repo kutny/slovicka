@@ -3,8 +3,6 @@ function PractisingController($scope, $http, $window) {
 	$scope.setDefaultState = function() {
 		$scope.noteShown = false;
 		$scope.userTranslationShown = false;
-		$scope.responseButtonsShown = true;
-		$scope.showNextButtonsShown = false;
 		$scope.sendingRequest = false;
 	};
 
@@ -14,9 +12,9 @@ function PractisingController($scope, $http, $window) {
 		$scope.sendRequest(apiEndpointUrl, 'GET', {});
 	};
 
-	$scope.storeAnswer = function(answeredCorrectly) {
+	$scope.storeAnswer = function(userKnewAnser) {
 		var apiEndpointUrl = apiBaseUrl + '/v1/practise/answer/' + $scope.userVocabularyId;
-		var data = {answeredCorrectly: (answeredCorrectly ? 1 : 0)};
+		var data = {answeredCorrectly: (userKnewAnser ? 1 : 0)};
 
 		$scope.sendRequest(apiEndpointUrl, 'POST', data);
 	};
@@ -47,7 +45,7 @@ function PractisingController($scope, $http, $window) {
 					$scope.englishVocabulary = data.userTranslation;
 					$scope.userTranslation = data.englishVocabulary;
 					$scope.explanation = data.explanation;
-					$scope.note = null;
+					$scope.note = data.note.replace(data.englishVocabulary, '*****');
 				}
 
 				$scope.setDefaultState();
@@ -61,23 +59,14 @@ function PractisingController($scope, $http, $window) {
 		return Math.random() * (max - min) + min;
 	};
 
-	$scope.notSure = function() {
+	$scope.showTranslation = function() {
 		$scope.userTranslationShown = true;
-		$scope.responseButtonsShown = false;
-		$scope.showNextButtonsShown = true;
 	};
 
-	$scope.iKnow = function() {
-		$scope.userTranslationShown = true;
-		$scope.responseButtonsShown = false;
-
-		$scope.storeAnswer(true);
-	};
-
-	$scope.showNext = function() {
+	$scope.nextVocabulary = function(userKnewAnser) {
 		$scope.userTranslationShown = true;
 
-		$scope.storeAnswer(false);
+		$scope.storeAnswer(userKnewAnser);
 	};
 
 	$scope.showHint = function() {
