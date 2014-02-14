@@ -41,10 +41,6 @@ assetic:
     bundles:        [KutnyAdminBundle]
     #java: /usr/bin/java
     filters:
-        coffee:
-            bin: %coffee.path%
-            node: %nodejs.path%
-            apply_to: "\.coffee$"
         cssrewrite: ~
         closure:
             jar: "%kernel.root_dir%/Resources/java/compiler-20120917.jar"

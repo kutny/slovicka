@@ -27,11 +27,6 @@ parameters:
 
     service_container: %kernel.root_dir%/config/services.yml
 
-    coffee.path:
-    nodejs.path:
-
-    mysql_binaries_path:
-
     mailer.default.fromEmail: info@slovicka.com
     mailer.default.fromName: Slovicka
     mailer.smtp.encryption: ssl
