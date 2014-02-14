@@ -1,9 +1,11 @@
 <VirtualHost *:80>
+  ServerName api.slovicka.my
   DocumentRoot /home/ubuntu/slovicka/web
-  ServerName slovicka.my
   SetEnv KUTNY_ENVIRONMENT test
   AccessFileName .htaccess
   <Directory /home/ubuntu/slovicka>
+    Header set Access-Control-Allow-Origin "http://slovicka.my"
+	Header set Access-Control-Allow-Credentials "true"
     Options Includes FollowSymLinks MultiViews
     AllowOverride All
     Order allow,deny

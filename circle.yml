@@ -20,10 +20,11 @@ dependencies:
     - app/console assets:install --env=test
     - app/console assetic:dump --env=test
     - ~/slovicka/bin/phing -f ~/slovicka/build.xml
-    - cp ~/slovicka/tools/ci/slovicka_my /etc/apache2/sites-available
+    - cp ~/slovicka/tools/ci/slovicka.my /etc/apache2/sites-available
+    - cp ~/slovicka/tools/ci/api.slovicka.my /etc/apache2/sites-available
     - rm /etc/apache2/sites-enabled/000-default
     - a2enmod rewrite
-    - a2ensite slovicka_my
+    - a2ensite slovicka.my
     - chmod 0777 -R ~/slovicka/app/
     - sudo service apache2 restart
 test:
