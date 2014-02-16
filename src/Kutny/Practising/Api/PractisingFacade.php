@@ -12,20 +12,21 @@ use KutnyLib\DateTime\DateTimeFactory;
 
 class PractisingFacade {
 
+	private $correctAnswersLimit;
 	private $answerRepository;
 	private $dateTimeFactory;
 	private $userVocabularyRepository;
-	private $correctAnswersLimit;
 
 	public function __construct(
+		$correctAnswersLimit,
 		AnswerRepository $answerRepository,
 		DateTimeFactory $dateTimeFactory,
 		UserVocabularyRepository $userVocabularyRepository
 	) {
+		$this->correctAnswersLimit = $correctAnswersLimit;
 		$this->userVocabularyRepository = $userVocabularyRepository;
 		$this->answerRepository = $answerRepository;
 		$this->dateTimeFactory = $dateTimeFactory;
-		$this->correctAnswersLimit = 4;
 	}
 
 	public function getUserVocabulary($userVocabularyId) {

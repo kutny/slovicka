@@ -35,3 +35,5 @@ parameters:
     mailer.smtp.username:
     mailer.smtp.password:
     mailer.max_retry_count: 3
+
+    practising.correct_answer_limit: 4

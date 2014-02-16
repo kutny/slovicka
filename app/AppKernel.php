@@ -24,7 +24,8 @@ class AppKernel extends Kernel
 			new Fkr\CssURLRewriteBundle\FkrCssURLRewriteBundle(),
 			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 			new Kutny\NoBundleControllersBundle\KutnyNoBundleControllersBundle(),
-			new Kutny\FixturesBundle\KutnyFixturesBundle()
+			new Kutny\FixturesBundle\KutnyFixturesBundle(),
+			new Ob\HighchartsBundle\ObHighchartsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

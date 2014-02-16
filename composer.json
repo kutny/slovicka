@@ -21,7 +21,7 @@
 		}
 	],
     "require": {
-        "php": ">=5.5.3",
+		"php": ">=5.3.3",
         "symfony/symfony": "2.3.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.2.*",
@@ -50,7 +50,8 @@
 		"facebook/webdriver": "dev-master",
 		"phing/phing": "dev-master",
 		"squizlabs/php_codesniffer": "1.*",
-		"kutny/phpcs-symfony": "dev-master"
+		"kutny/phpcs-symfony": "dev-master",
+		"ob/highcharts-bundle": "1.*"
     },
     "scripts": {
         "post-install-cmd": [

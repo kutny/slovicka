@@ -1,0 +1,40 @@
+{% extends "KutnyAdminBundle::layout.html.twig" %}
+
+{% block headAssets %}
+	<script src="{{ asset('bundles/obhighcharts/js/highcharts/highcharts.js') }}"></script>
+	<script src="{{ asset('bundles/obhighcharts/js/highcharts/modules/exporting.js') }}"></script>
+	<script type="text/javascript">
+		{{ chart(chartNew) }}
+		{{ chart(chartCumulative) }}
+	</script>
+	<style type="text/css">
+		.chart-wrapper {
+			position: relative;
+			padding-bottom: 80%;
+		}
+
+		.chart-inner {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+{% endblock %}
+
+{% block title %}Stats{% endblock %}
+{% block content %}
+	<div class="jumbotron">
+		<div class="chart-wrapper">
+			<div class="chart-inner">
+				<div id="chartNew" style="width:100%; height: 100%;"></div>
+			</div>
+		</div>
+		<br />
+		<div class="chart-wrapper">
+			<div class="chart-inner">
+				<div id="chartCumulative" style="width:100%; height: 100%;"></div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

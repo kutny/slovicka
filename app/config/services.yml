@@ -191,6 +191,8 @@ services:
 
   practising.api.practising_facade:
     class: Kutny\Practising\Api\PractisingFacade
+    arguments:
+      - %practising.correct_answer_limit%
 
   practising.practising_controller:
     class: Kutny\Practising\PractisingController
@@ -217,6 +219,20 @@ services:
 
   sleeper.integer_sleeper:
     class: KutnyLib\Sleeper\IntegerSleeper
+
+  stats.chart_configuration_creator:
+    class: Kutny\Stats\ChartConfigurationCreator
+
+  stats.stats_controller:
+    class: Kutny\Stats\StatsController
+
+  stats.stats_facade:
+    class: Kutny\Stats\StatsFacade
+    arguments:
+      - %practising.correct_answer_limit%
+
+  stats.vocabulary_data_preparer:
+    class: Kutny\Stats\VocabularyDataPreparer
 
   string.camel_2_underscore_converter:
     class: KutnyLib\String\Camel2UnderscoreConverter
