@@ -18,6 +18,10 @@
 					"type": "file"
 				}
 			}
+		},
+		{
+			"type": "vcs",
+			"url":  "git@github.com:kutny/phpcs-symfony.git"
 		}
 	],
     "require": {

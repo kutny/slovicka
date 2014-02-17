@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a64e78b4f4abeda7e111763b5f57a8c0",
+    "hash": "13f624984ef043ccf9c300ba9240c9f9",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -1286,13 +1286,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/kutny/phpcs_symfony.git",
-                "reference": "578858c32fcc6bce130f5554bdef42d5c942319f"
+                "url": "git@github.com:kutny/phpcs-symfony.git",
+                "reference": "1ae26679062358813da467813b399842c9915b79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kutny/phpcs_symfony/zipball/578858c32fcc6bce130f5554bdef42d5c942319f",
-                "reference": "578858c32fcc6bce130f5554bdef42d5c942319f",
+                "url": "https://api.github.com/repos/kutny/phpcs-symfony/zipball/1ae26679062358813da467813b399842c9915b79",
+                "reference": "1ae26679062358813da467813b399842c9915b79",
                 "shasum": ""
             },
             "require": {
@@ -1301,7 +1301,6 @@
                 "squizlabs/php_codesniffer": "1.*"
             },
             "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1311,7 +1310,11 @@
                 "standards",
                 "symfony"
             ],
-            "time": "2014-02-08 14:23:49"
+            "support": {
+                "source": "https://github.com/kutny/phpcs-symfony/tree/master",
+                "issues": "https://github.com/kutny/phpcs-symfony/issues"
+            },
+            "time": "2014-02-17 15:39:25"
         },
         {
             "name": "kutny/tracy-bundle",
