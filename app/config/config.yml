@@ -101,3 +101,11 @@ swiftmailer:
 
 kutny_fixtures:
     appdata_manager_service_name: appdata_manager
+
+kutny_tracy:
+    emails: ['jirkakoutnyn@gmail.com']
+
+kutny_autowiring:
+    ignored_services:
+      - 'jms_aop\.pointcut_container'
+      - 'jms_aop\.interceptor_loader'

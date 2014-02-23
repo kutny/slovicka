@@ -27,10 +27,10 @@ if (!$debug && extension_loaded('apc') && ini_get('apc.enabled')) {
 Debugger::$strictMode = true;
 
 if ($debug) {
-	Debugger::enable(Debugger::DEVELOPMENT, __DIR__ . '/logs/', null);
+	Debugger::enable(Debugger::DEBUG);
 }
 else {
-	Debugger::enable(Debugger::PRODUCTION, __DIR__ . '/logs/', 'jirkakoutnyn@gmail.com');
+	Debugger::enable(Debugger::PRODUCTION);
 }
 
 /* Application kernel booting */

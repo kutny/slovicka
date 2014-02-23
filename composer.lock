@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "13f624984ef043ccf9c300ba9240c9f9",
+    "hash": "559e46a0e0336f93d7e87108f9c14e59",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -682,16 +682,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/php-webdriver.git",
-                "reference": "38aa3a43b19bd74e417e710f9020fb2ac6aa7222"
+                "reference": "20a63d947b3dade905c0b130f05e7193f8cd68b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/38aa3a43b19bd74e417e710f9020fb2ac6aa7222",
-                "reference": "38aa3a43b19bd74e417e710f9020fb2ac6aa7222",
+                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/20a63d947b3dade905c0b130f05e7193f8cd68b8",
+                "reference": "20a63d947b3dade905c0b130f05e7193f8cd68b8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.19",
+                "php": ">=5.3.19"
+            },
+            "require-dev": {
                 "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
@@ -712,7 +714,7 @@
                 "selenium",
                 "webdriver"
             ],
-            "time": "2014-02-07 16:55:50"
+            "time": "2014-02-22 05:23:47"
         },
         {
             "name": "fkr/cssurlrewrite-bundle",
@@ -1161,12 +1163,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kutny/autowiring-bundle.git",
-                "reference": "b7ca3f388e1729b5ebc8c2e4a66f273b0afd02db"
+                "reference": "0ffab9bbf76dad610fc1cf6a54f52e39543a3ae6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kutny/autowiring-bundle/zipball/b7ca3f388e1729b5ebc8c2e4a66f273b0afd02db",
-                "reference": "b7ca3f388e1729b5ebc8c2e4a66f273b0afd02db",
+                "url": "https://api.github.com/repos/kutny/autowiring-bundle/zipball/0ffab9bbf76dad610fc1cf6a54f52e39543a3ae6",
+                "reference": "0ffab9bbf76dad610fc1cf6a54f52e39543a3ae6",
                 "shasum": ""
             },
             "require": {
@@ -1196,7 +1198,7 @@
                 "dependency injection",
                 "di"
             ],
-            "time": "2013-06-16 19:56:49"
+            "time": "2014-02-24 21:02:07"
         },
         {
             "name": "kutny/fixtures-bundle",
@@ -1318,22 +1320,22 @@
         },
         {
             "name": "kutny/tracy-bundle",
-            "version": "v0.9.0",
+            "version": "1.0",
             "target-dir": "Kutny/TracyBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kutny/tracy-bundle.git",
-                "reference": "1fafe16dbba5a2aab3cfb0016a8bf471d79d63a5"
+                "reference": "f3304c6f95f4d7b430d9f059e6549a66b39bce2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kutny/tracy-bundle/zipball/1fafe16dbba5a2aab3cfb0016a8bf471d79d63a5",
-                "reference": "1fafe16dbba5a2aab3cfb0016a8bf471d79d63a5",
+                "url": "https://api.github.com/repos/kutny/tracy-bundle/zipball/f3304c6f95f4d7b430d9f059e6549a66b39bce2c",
+                "reference": "f3304c6f95f4d7b430d9f059e6549a66b39bce2c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "tracy/tracy": "v0.9.0"
+                "tracy/tracy": "0.9.*"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -1358,7 +1360,7 @@
                 "debugging",
                 "nette"
             ],
-            "time": "2013-12-23 13:40:37"
+            "time": "2014-02-24 22:57:30"
         },
         {
             "name": "leafo/lessphp",
@@ -1524,12 +1526,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "bd2689790c620ac745b3ad29765c641a0dd5d007"
+                "reference": "10c1c98302c37c59dddfcb8aa7e46525041cf277"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/bd2689790c620ac745b3ad29765c641a0dd5d007",
-                "reference": "bd2689790c620ac745b3ad29765c641a0dd5d007",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/10c1c98302c37c59dddfcb8aa7e46525041cf277",
+                "reference": "10c1c98302c37c59dddfcb8aa7e46525041cf277",
                 "shasum": ""
             },
             "require": {
@@ -1568,7 +1570,7 @@
                 "task",
                 "tool"
             ],
-            "time": "2014-02-13 13:17:59"
+            "time": "2014-02-17 20:21:39"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2898,6 +2900,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "kutny/autowiring-bundle": 20,
+        "tracy/tracy": 20,
         "knplabs/knp-menu-bundle": 20,
         "knplabs/knp-menu": 20,
         "kutny/no-bundle-controllers-bundle": 20,
