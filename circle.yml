@@ -7,8 +7,15 @@ machine:
     slovicka.my: 127.0.0.1
   services:
     - mysql
+    - memcached
+    - redis
 dependencies:
+  cache_directories:
+    - "~/slovicka/vendor"
   pre:
+    - echo "short_open_tag = On" > ~/.phpenv/versions/$(phpenv global)/etc/conf.d/my_settings.ini
+    - pecl install -f memcached-2.0.1
+    - yes | pecl install memcache
     - wget -O /tmp/selenium-server-standalone-2.39.0.jar "https://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar"
     - java -jar /tmp/selenium-server-standalone-2.39.0.jar:
         background: true
