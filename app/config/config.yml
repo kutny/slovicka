@@ -102,6 +102,10 @@ swiftmailer:
 kutny_fixtures:
     appdata_manager_service_name: appdata_manager
 
+kutny_no_bundle_controllers:
+    main_bundle_namespace: 'Kutny\AdminBundle'
+    apply_to_namespaces: ['Kutny']
+
 kutny_tracy:
     emails: ['jirkakoutnyn@gmail.com']
 
